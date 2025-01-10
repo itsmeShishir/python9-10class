@@ -1,0 +1,39 @@
+so venv
+-> check venv install or not 
+-> pip install venv
+to create a env for django project 
+-> python -m venv nameofenvironment
+
+to activate a env
+-> source nameofenvironment/bin/activate mac/linux
+-> nameofenvironment\Scripts\activate windows
+
+(nameofenvironment) terminal -> 
+
+pip install django
+
+#requirement.txt
+pip freeze > requirements.txt
+
+django-admin startproject nameofproject 
+django-admin startproject nameofproject . //prefer this 
+
+
+(nameofproject) terminal ->
+python manage.py runserver -> to run your project
+
+ctrl+c -> stop in terminal
+
+(nameofproject) terminal ->
+python manage.py startapp nameofapp
+
+(nameofproject) terminal -> model -> to create model
+python manage.py makemigration
+
+orm -> object relational mapping -> oop -> object oriented programming -> convert data to object and object to data
+
+-> python manage.py makemigrations
+-> python manage.py migrate
+
+-> django -> framework -> frontend and backend seprate
+-> drf -> django rest framework
