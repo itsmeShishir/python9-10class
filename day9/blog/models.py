@@ -11,7 +11,10 @@ class Blog(models.Model):
     body = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/')
+    isFeatured = models.BooleanField(default=False)
+    isSlider = models.BooleanField(default=False)
     pub_date = models.DateTimeField()
+    
     def __str__(self):
         return f"{self.title}"
     
