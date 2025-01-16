@@ -13,7 +13,7 @@ class Blog(models.Model):
     image = models.ImageField(upload_to='images/')
     isFeatured = models.BooleanField(default=False)
     isSlider = models.BooleanField(default=False)
-    pub_date = models.DateTimeField()
+    pub_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return f"{self.title}"

@@ -6,12 +6,12 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 class UserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('email', 'username', 'password1', 'password2','phone_number', 'role')
+        fields = ('email', 'username', 'password1', 'password2','phone_number')
 
 class UserChangeForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ('email', 'username', 'phone_number', 'role')
+        fields = ('email', 'username', 'phone_number')
 
 class UserChangePassword(forms.Form):
     old_password = forms.CharField(widget=forms.PasswordInput())

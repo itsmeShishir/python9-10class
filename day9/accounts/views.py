@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from .forms import UserCreationForm, UserChangeForm, UserChangePassword
-# aiuthentication 
+# aiuthentication
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

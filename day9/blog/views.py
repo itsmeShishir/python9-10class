@@ -20,3 +20,6 @@ def single(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+def createBlog(request):
+    return render(request, 'create_blog.html')

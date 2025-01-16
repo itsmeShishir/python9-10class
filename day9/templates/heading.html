@@ -148,6 +148,15 @@
               >Single News</a
             >
             <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+            <div>
+              <!-- if login show username else logn and register  -->
+              {% if user.is_authenticated %}
+              <a href="{% url 'login' %}" class="nav-item nav-link"
+                >{{user.username }}</a
+              >
+              {% else %} <a href="{% url 'login' %}">Login</a> and
+              <a href="{% url 'register' %}">Register</a> {% endif %}
+            </div>
           </div>
           <div
             class="input-group ml-auto d-none d-lg-flex"
@@ -170,4 +179,5 @@
       </nav>
     </div>
     <!-- Navbar End -->
-
+  </body>
+</html>
