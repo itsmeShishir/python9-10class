@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from blog.models import Category
 from .forms import UserCreationForm, UserChangeForm, UserChangePassword
 # aiuthentication
 from django.contrib.auth import authenticate, login, logout
@@ -20,9 +22,13 @@ def login_user(request):
         email = request.POST['email']
         password = request.POST['password']
         user = authenticate(request, email=email, password=password)
+        # if  role == admin redirect to admin page and if user == user redirect to home page
         if user is not None:
             login(request, user)
-            return render(request, 'index.html')
+            if user.role == "1":
+                return render(request, 'admin/admin.html')
+            else :
+                return render(request, 'index.html')
         else:
             return render(request, 'login.html')
     else:
@@ -55,3 +61,14 @@ def change_profile(request):
     else:
         form = UserChangeForm(instance=request.user)
     return render(request, 'change_profile.html', {'form': form})
+
+@login_required(login_url='login')
+def admin(request):
+    # get all the categories
+    categories = Category.objects.all()
+    print(categories)
+    # pass the categories to the template
+    context = {
+        'categories': categories
+    }
+    return render(request, 'admins/admin.html', context)

@@ -1,0 +1,48 @@
+<div class="w-1/6 bg-blue-500 absolute top-0 right-0">
+  <aside class="text-white h-screen flex flex-col items-center gap-5">
+    <div class="text-center p-5 border-b-2 w-full">
+      <h1>{{user.username }}</h1>
+      <h1>{{user.email }}</h1>
+    </div>
+    <div>
+      <ul class="flex flex-col gap-5">
+        <li>
+          <a
+            href="{% url 'admin-panel' %}"
+            class="hover:bg-white hover:text-black w-full block rounded-md"
+            >Dashboard</a
+          >
+        </li>
+        <!-- lets make a category dropdown here -->
+        <li>
+          <a
+            class="hover:bg-white hover:text-black w-full block rounded-md"
+            href="#"
+            >Category</a
+          >
+        </li>
+        <li>
+          <a
+            class="hover:bg-white hover:text-black w-full block rounded-md"
+            href="#"
+            >Post</a
+          >
+        </li>
+        <li>
+          <a
+            class="hover:bg-white hover:text-black w-full block rounded-md"
+            href="#"
+            >User</a
+          >
+        </li>
+        <li>
+          <a
+            class="hover:bg-white hover:text-black w-full block rounded-md"
+            href="#"
+            >Logout</a
+          >
+        </li>
+      </ul>
+    </div>
+  </aside>
+</div>

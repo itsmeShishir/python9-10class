@@ -151,7 +151,7 @@
             <div>
               <!-- if login show username else logn and register  -->
               {% if user.is_authenticated %}
-              <a href="{% url 'login' %}" class="nav-item nav-link"
+              <a href="{% url 'admin-panel' %}" class="nav-item nav-link"
                 >{{user.username }}</a
               >
               {% else %} <a href="{% url 'login' %}">Login</a> and
@@ -178,6 +178,4 @@
         </div>
       </nav>
     </div>
-    <!-- Navbar End -->
-  </body>
-</html>
+

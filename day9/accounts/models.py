@@ -5,11 +5,11 @@ from django.contrib.auth.models import AbstractUser
 
 #abstract user model
 class User(AbstractUser):
-    roles = (
-        (1,"admin"),
-        (2,"User"),
-        (3,"Manager"),
-    )
+    roles = [
+        ('1', 'Admin'),
+        ('2', 'User'),
+        ('3', 'Manager'),
+    ]
 
     email = models.EmailField(unique=True, null=True)
     phone_number = models.CharField(max_length=10, null=True, blank=True)
