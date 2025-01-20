@@ -1,10 +1,10 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
 from blog.models import Category
 from .forms import UserCreationForm, UserChangeForm, UserChangePassword
 # aiuthentication
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import User
 # Create your views here.
 
 def register(request):
@@ -72,3 +72,39 @@ def admin(request):
         'categories': categories
     }
     return render(request, 'admins/admin.html', context)
+
+@login_required(login_url='login')
+def AdminCategory(request):
+    categories = Category.objects.all()
+    context = {
+        'categories': categories
+    }
+    return render(request, 'admins/category/allcategory.html', context)
+
+# delete single category
+def deletecategory(request, id):
+    category = Category.objects.get(id=id)
+    category.delete()
+    return redirect('admins-category')
+
+def createcategory(request):
+    if request.method == 'POST':
+        name = request.POST['name'] 
+        Category.objects.create(name=name)
+        return redirect('admins-category')
+    return render(request, 'admins/category/addcategory.html')
+
+def updatecategory(request, id):
+    category = Category.objects.get(id=id)
+    if request.method == 'POST':
+        category.name = request.POST['name']
+        category.save()
+        return redirect('admins-category')
+    return render(request, 'admins/category/update.html', {'category': category})
+
+def allusers(request):
+    users = User.objects.all()
+    context = {
+        'users': users
+    }
+    return render(request, 'admins/usersdetails/allusers.html', context)

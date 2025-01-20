@@ -23,3 +23,4 @@ def contact(request):
 
 def createBlog(request):
     return render(request, 'create_blog.html')
+

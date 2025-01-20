@@ -1,0 +1,35 @@
+{% extends 'admins/bases.html' %} {% block content %}
+<div class="absolute top-0 left-0 w-4/6 mx-auto">
+  <h1>All Category Panel</h1>
+  <div class="mt-5 p-5">
+    <a href="{% url 'createcategory' %}">Add Category</a>
+    <table class="table border">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Category</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for category in categories %}
+        <tr>
+          <th>{{ category.id }}</th>
+          <th>{{ category.name }}</th>
+          <th>
+            <a href="{% url 'updatecategory' category.id %}">Update</a>
+            <form
+              action="{% url 'deletecategorys' category.id %}"
+              method="post"
+            >
+              {% csrf_token %}
+              <input type="submit" value="Delete" />
+            </form>
+          </th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
