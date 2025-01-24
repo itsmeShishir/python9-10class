@@ -26,9 +26,9 @@ def login_user(request):
         if user is not None:
             login(request, user)
             if user.role == "1":
-                return render(request, 'admin/admin.html')
+                return redirect('admin-panel')
             else :
-                return render(request, 'index.html')
+                return redirect('home')
         else:
             return render(request, 'login.html')
     else:
@@ -108,3 +108,19 @@ def allusers(request):
         'users': users
     }
     return render(request, 'admins/usersdetails/allusers.html', context)
+
+def createUsers(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password= request.POST['password']
+        phone_number = request.POST['phone_number']
+        role = request.POST['role']
+        User.objects.create(
+            username=username, 
+            email=email, 
+            password=password,
+            phone_number=phone_number, 
+            role=role)
+        return redirect('allusers')
+    return render(request, 'admins/usersdetails/addusers.html')  

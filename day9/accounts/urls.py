@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import register, login_user, logout_user, change_password, change_profile, admin, AdminCategory, deletecategory, createcategory, updatecategory, allusers
+from .views import createUsers, register, login_user, logout_user, change_password, change_profile, admin, AdminCategory, deletecategory, createcategory, updatecategory, allusers
 urlpatterns = [
     path('register', register, name='register'),
     path('login/', login_user, name='login'),
@@ -12,4 +12,5 @@ urlpatterns = [
     path("adminsadd-category/", createcategory, name="createcategory"),
     path("updatecategory/<int:id>/", updatecategory, name="updatecategory"),
     path("allusers/", allusers, name="allusers"),
+    path("createusers/", createUsers, name="createusers"),
 ]

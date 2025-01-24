@@ -5,7 +5,7 @@ from .models import *
 admin.site.register(Category)
 admin.site.register(Blog)
 admin.site.register(Review)
-
+admin.site.register(Contact)
 
 #pyton manage.py createsuperuser
 # username-> admin
