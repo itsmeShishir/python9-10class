@@ -148,3 +148,5 @@ SIMPLE_JWT = {
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+KHALTI_SECRET_KEY = "dc2a944e649a4a3d94240158c4a6a361"

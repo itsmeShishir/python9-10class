@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AllCategory, AllProduct, CreateCategory, CreateProduct, DeleteSingleProduct, SingleCategory, SingleProduct, UpdateSingleCategory, DeleteSingleCategory, UpdateSingleProduct
+from .views import AllCategory, AllProduct, CreateCategory, CreateProduct, DeleteSingleProduct, SingleCategory, SingleProduct, UpdateSingleCategory, DeleteSingleCategory, UpdateSingleProduct,CategoryProduct 
 urlpatterns = [
     path('allCategory/', AllCategory.as_view() , name="allcategory" ),
     path('createCategory/', CreateCategory.as_view() , name="createcategory" ),
@@ -12,4 +12,6 @@ urlpatterns = [
     path('singleProduct/<int:pk>/', SingleProduct.as_view() , name="singleProduct" ),
     path('updateProduct/<int:pk>/', UpdateSingleProduct.as_view() , name="updateProduct" ),
     path('deleteProduct/<int:pk>/', DeleteSingleProduct.as_view() , name="deleteProduct" ),
+
+    path('categoryProduct/<int:pk>/', CategoryProduct.as_view() , name="categoryProduct" ),
 ]

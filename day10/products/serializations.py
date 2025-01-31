@@ -11,3 +11,10 @@ class ProductSerialization(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+
+# so i want to show category all products
+class CategoryProductSerializer(serializers.ModelSerializer):
+    product_set = ProductSerialization(many=True, read_only=True)
+    class Meta:
+        model = Category
+        fields = '__all__'

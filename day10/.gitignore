@@ -1,0 +1,22 @@
+db.sqlite3
+__pycache__/
+*.pyc
+
+# Django
+django-debug-toolbar
+django-extensions
+django-storages
+django-storages[google]
+django-storages[azure]
+django-storages[dropbox]
+django-storages[s3]
+django-storages[openstack]
+django-storages[ftp]
+
+# django env
+env/
+.env
+.evnv
+venv/
+env
+venv
