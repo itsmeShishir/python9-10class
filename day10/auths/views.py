@@ -12,42 +12,45 @@ from rest_framework import permissions
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [permissions.IsAdminUser]
 
 class UserRegister(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegisterSerializer
 
-    
-# from rest_framework_simplejwt.tokens import RefreshToken
-class LoginApi(APIView):
-    def post(self, request):
-        email = request.data['email']
-        password = request.data['password']
-        user = authenticate(email=email, password=password)
+# import status
+from rest_framework import status 
 
+# from rest_framework_simplejwt.tokens import RefreshToken
+class LoginAPI(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        email = request.data.get('email')
+        password = request.data.get('password')
+
+        if not email or not password:
+            return Response({'error': 'Email and password required'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        user = authenticate(request, username=email, password=password)
+        if not user:
+            return Response({'error': 'Invalid credentials'},
+                            status=status.HTTP_401_UNAUTHORIZED)
+        user.save()
 
         refresh = RefreshToken.for_user(user)
-        access_token = str(refresh.access_token)
-
-        if not user:
-            return Response({'message': 'Crediancial donenot match'})
-
-        if user is not None:
-           update_session_auth_hash(request, user)
-           return Response({
-            'status': 200,
-            'access': access_token,
+        return Response({
             'refresh': str(refresh),
-            'message': 'Login Success', 
-            'username': user.username, 
-            "role": user.role,
-            "email": user.email
-            })
-        else:
-           return Response({'message': 'Login Failed'})
-           
-#class Profile section  -> token send in header -> using access token
+            'access': str(refresh.access_token),
+            'user_id': user.id,
+            'role': user.role,
+            'username': user.username,
+            'email': user.email,
+        })
 
+
+#class Profile section  -> token send in header -> using access token
 class Profile(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
     queryset = User.objects.all()

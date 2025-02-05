@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'auths',
     'orders',
     'products',
+    "corsheaders",
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'django.contrib.admin',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -150,3 +152,7 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 KHALTI_SECRET_KEY = "dc2a944e649a4a3d94240158c4a6a361"
+
+CORS_ALLOWED_ORIGINS = [
+    "localhost:5173"
+]
