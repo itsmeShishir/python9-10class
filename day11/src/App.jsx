@@ -1,29 +1,17 @@
-import React, {useState, useEffect} from "react";
-import axios from "axios";
-
+import { Routes, Route } from 'react-router-dom'
+import HomePage from './Page/Home/HomePage'
+import AllProducts from './Page/Product/AllProducts'
+import Navbar from './Component/Navbar'
 function App() {
-  let [data, setData] = useState([]);
-
-  useEffect(() => {
-    let fetchs = async () => {
-      let response = await axios.get("http://127.0.0.1:8000/api/allProduct/");
-      setData(response.data);
-    }
-    fetchs();
-  }, []);
   return (
-    <div>
-      <h1>Product List</h1>
-      {data.forEach((item) => {
-        return (
-          <div key={item.id}>
-            <h2>{item.name}</h2>
-            <p>{item.price}</p>
-          </div>
-        )
-      })};
-    </div>
+   <>
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/products" element={<AllProducts />} />
+    </Routes>
+   </>
   )
 }
 
-export default App;
+export default App
