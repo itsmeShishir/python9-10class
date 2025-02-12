@@ -8,9 +8,11 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductSerialization(serializers.ModelSerializer):
+    category_name = serializers.CharField(source='category.name')
+    username_name = serializers.CharField(source='user.username')
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ['id', 'name', 'price', 'category_name', 'description', 'image', 'username_name']
 
 # so i want to show category all products
 class CategoryProductSerializer(serializers.ModelSerializer):
