@@ -1,13 +1,15 @@
 import {useState} from 'react';
 import axios from 'axios';
-
+import {useNavigate} from 'react-router-dom';
 function Login() {
+
     let [email, setEmail] = useState('');
     let [password, setPassword] = useState('');
 
+    let navigate = useNavigate();
+
     let handleSubmit = (e) => {
         e.preventDefault();
-        // use of the axios
         axios.post('http://127.0.0.1:8000/api/login', {
             email: email,
             password: password
@@ -19,12 +21,14 @@ function Login() {
             localStorage.setItem('role', res.data.role);
             localStorage.setItem('id', res.data.id);
             localStorage.setItem('username', res.data.username);
-            if(res.data.role === 'admin'){
-                window.location.href = '/admin';
+           
+            
+            if(res.data.role == "2"){
+                navigate('/admin');
             }else{
-                window.location.href = '/';
-            }
+               navigate('/user');
 
+            }
         }).catch(err => {
             console.log(err);
         })
