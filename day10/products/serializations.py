@@ -14,6 +14,11 @@ class ProductSerialization(serializers.ModelSerializer):
         model = Product
         fields = ['id', 'name', 'price', 'category_name', 'description', 'image', 'username_name']
 
+class ProductsSerialization(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = "__all__"
+
 # so i want to show category all products
 class CategoryProductSerializer(serializers.ModelSerializer):
     product_set = ProductSerialization(many=True, read_only=True)

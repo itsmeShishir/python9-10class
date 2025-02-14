@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializations import CategoryProductSerializer, CategorySerializer, ProductSerialization
+from .serializations import CategoryProductSerializer, CategorySerializer, ProductSerialization, ProductsSerialization
 from .models import Category, Product
 from rest_framework.response import Response
 from rest_framework import generics
@@ -46,7 +46,7 @@ class AllProduct(generics.ListAPIView):
 
 class CreateProduct(generics.CreateAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerialization
+    serializer_class = ProductsSerialization
     permission_classes = [IsAdminOrReadOnly]
 
 
